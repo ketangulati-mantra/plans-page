@@ -43,6 +43,108 @@
   position: relative;
   width: 100%;
   max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 0. Urgency Bar above Pricing Card */
+.urgency-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  font-family: ui-sans-serif, system-ui, sans-serif, -apple-system;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.urgency-intro {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  color: #0369a1;
+}
+
+.urgency-rescue {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  box-shadow: 0 2px 10px rgba(239, 68, 68, 0.08);
+}
+
+.urgency-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.urgency-intro .urgency-icon {
+  color: #00C0FF;
+}
+
+.urgency-rescue .urgency-icon {
+  color: #ef4444;
+}
+
+.rescue-pulse {
+  animation: pulse-soft 1.6s infinite ease-in-out;
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.urgency-text-wrap {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.urgency-message {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.1px;
+}
+
+.urgency-highlight {
+  font-weight: 700;
+  color: #b91c1c;
+}
+
+.urgency-timer-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #bae6fd;
+  color: #0284c7;
+  font-weight: 700;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.badge-timer-rescue {
+  background: #ef4444;
+  border-color: #dc2626;
+  color: #ffffff;
 }
 
 /* Decorative background Plus/Cross watermark */
@@ -67,6 +169,12 @@
   border: 1px solid #eef2f6;
   padding: 22px 24px 24px 24px;
   font-family: ui-sans-serif, system-ui, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card-rescue-active {
+  border-color: #fca5a5;
+  box-shadow: 0 4px 24px rgba(239, 68, 68, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 @media (max-width: 480px) {
@@ -310,6 +418,36 @@
   color: #94a3b8;
   text-decoration: line-through;
   margin-top: 2px;
+}
+
+.plan-rescue-price-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.badge-extra-discount {
+  display: inline-flex;
+  align-items: center;
+  padding: 1.5px 5px;
+  border-radius: 4px;
+  background-color: #fee2e2;
+  color: #dc2626;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.save-label-highlight {
+  color: #dc2626 !important;
+  font-weight: 700 !important;
+}
+
+.proceed-btn-rescue {
+  background: linear-gradient(135deg, #00C0FF 0%, #0284c7 100%) !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35) !important;
 }
 
 /* 4. Feature Checklist */
@@ -590,6 +728,24 @@
 
 /* Mobile Specific Spacing Optimization */
 @media (max-width: 480px) {
+  .urgency-bar {
+    padding: 7px 10px;
+    margin-bottom: 9px;
+    border-radius: 10px;
+    gap: 6px;
+  }
+
+  .urgency-message {
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .urgency-timer-badge {
+    padding: 2.5px 6px;
+    font-size: 11.5px;
+    border-radius: 5px;
+  }
+
   .plan-card {
     padding: 14px 13px 16px 13px;
   }

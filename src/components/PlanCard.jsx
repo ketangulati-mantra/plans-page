@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Video, MessageSquare, Check, Tag } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Video, MessageSquare, Check, Tag, Clock, Sparkles } from 'lucide-react';
 import './PlanCard.css';
 
 // Plus / Cross Decorative SVG Watermark
@@ -762,26 +762,122 @@ export default function PlanCard({
   const [mode, setMode] = useState('Live'); // 'Live' | 'Chat'
   const [selectedDuration, setSelectedDuration] = useState('trial'); // 'trial' | '1m' | '3m' | '6m'
 
+  // Urgency Timer State (180s = 3 minutes)
+  const [timeLeft, setTimeLeft] = useState(180);
+  const [isTimerRunning, setIsTimerRunning] = useState(true);
+
+  useEffect(() => {
+    if (!isTimerRunning) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setIsTimerRunning(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isTimerRunning]);
+
+  // Format mm:ss
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  // Check offer states
+  const isRescueActive = timeLeft > 0 && timeLeft <= 30;
+  const isIntroActive = timeLeft > 30;
+  const isTimerActive = timeLeft > 0;
+
   // If in intern mode
   const activeCategoryKey = isInternMode ? 'Intern' : category;
   const currentCategoryData = planData[activeCategoryKey] || planData.Individual;
   const currentModeData = currentCategoryData[mode] || currentCategoryData.Live;
-  const activePlan = currentModeData[selectedDuration] || currentModeData.trial;
-  const durationSaves = currentModeData.durationSaves;
+  const baseActivePlan = currentModeData[selectedDuration] || currentModeData.trial;
+  const baseDurationSaves = currentModeData.durationSaves;
   const planTitle = currentModeData.title || 'Therapy';
 
+  // Helper to compute prices with optional rescue discount
+  const computePrice = (plan) => {
+    if (!plan) return { currentPrice: '0', originalPrice: '0', isDiscounted: false };
+    
+    // Clean string numbers (e.g. "14,110" -> 14110)
+    const rawCurrent = typeof plan.currentPrice === 'number'
+      ? plan.currentPrice
+      : parseInt(String(plan.currentPrice).replace(/,/g, ''), 10) || 0;
+
+    const rawOrig = typeof plan.originalPrice === 'number'
+      ? plan.originalPrice
+      : parseInt(String(plan.originalPrice).replace(/,/g, ''), 10) || rawCurrent;
+
+    if (isRescueActive) {
+      // 10% extra discount on the active plan price
+      const discountedNum = Math.round(rawCurrent * 0.9);
+      return {
+        currentPrice: discountedNum.toLocaleString('en-IN'),
+        originalPrice: rawCurrent.toLocaleString('en-IN'),
+        crossedOutPrice: rawCurrent.toLocaleString('en-IN'),
+        rawCurrentPrice: discountedNum,
+        isRescueDiscounted: true,
+      };
+    }
+
+    return {
+      currentPrice: typeof plan.currentPrice === 'number' ? plan.currentPrice.toLocaleString('en-IN') : plan.currentPrice,
+      originalPrice: typeof plan.originalPrice === 'number' ? plan.originalPrice.toLocaleString('en-IN') : plan.originalPrice,
+      crossedOutPrice: typeof plan.originalPrice === 'number' ? plan.originalPrice.toLocaleString('en-IN') : plan.originalPrice,
+      rawCurrentPrice: rawCurrent,
+      isRescueDiscounted: false,
+    };
+  };
+
+  const calculatedPrice = computePrice(baseActivePlan);
+
   const durationOptions = [
-    { id: 'trial', label: 'Trial offer', saveText: '' },
-    { id: '1m', label: '1 Month', saveText: durationSaves['1m'] },
-    { id: '3m', label: '3 Months', saveText: durationSaves['3m'], isPopular: true },
-    { id: '6m', label: '6 Months', saveText: durationSaves['6m'] },
+    { id: 'trial', label: 'Trial offer', saveText: isRescueActive ? 'Extra 10% OFF' : '' },
+    {
+      id: '1m',
+      label: '1 Month',
+      saveText: isRescueActive
+        ? 'Save Extra 10%'
+        : baseDurationSaves['1m'],
+    },
+    {
+      id: '3m',
+      label: '3 Months',
+      saveText: isRescueActive
+        ? 'Save Extra 10%'
+        : baseDurationSaves['3m'],
+      isPopular: true,
+    },
+    {
+      id: '6m',
+      label: '6 Months',
+      saveText: isRescueActive
+        ? 'Save Extra 10%'
+        : baseDurationSaves['6m'],
+    },
   ];
 
-  const displayFeatures = activePlan.features;
+  const displayFeatures = baseActivePlan.features;
 
   const handleCategorySelect = (newCategory) => {
     setCategory(newCategory);
     if (onCategoryChange) onCategoryChange(newCategory);
+  };
+
+  // Determine CTA text with urgency context
+  const getCtaText = () => {
+    if (isRescueActive) {
+      return `Claim Offer with Extra 10% OFF →`;
+    }
+    return baseActivePlan.ctaText || 'Proceed to Pay';
   };
 
   return (
@@ -796,7 +892,38 @@ export default function PlanCard({
       <div className="card-outer-container">
         <CrossWatermark />
 
-        <div className="plan-card">
+        {/* Conversion Urgency Banner */}
+        {isTimerActive && (
+          <div
+            className={`urgency-bar ${isRescueActive ? 'urgency-rescue' : 'urgency-intro'}`}
+            role="status"
+            aria-live="polite"
+          >
+            <div className="urgency-icon-wrap">
+              {isRescueActive ? (
+                <Sparkles className="urgency-icon rescue-pulse" size={14} />
+              ) : (
+                <Clock className="urgency-icon" size={14} />
+              )}
+            </div>
+            <div className="urgency-text-wrap">
+              {isRescueActive ? (
+                <span className="urgency-message">
+                  Still deciding? <strong className="urgency-highlight">Here’s 10% extra off</strong> · Expires in
+                </span>
+              ) : (
+                <span className="urgency-message">
+                  Your introductory offer is reserved for
+                </span>
+              )}
+            </div>
+            <div className={`urgency-timer-badge ${isRescueActive ? 'badge-timer-rescue' : ''}`}>
+              <span className="timer-digits">{formatTime(timeLeft)}</span>
+            </div>
+          </div>
+        )}
+
+        <div className={`plan-card ${isRescueActive ? 'plan-card-rescue-active' : ''}`}>
           {/* Top Category Tabs: Only visible when not in Intern mode */}
           {!isInternMode && (
             <div className="category-tabs" role="tablist">
@@ -840,18 +967,18 @@ export default function PlanCard({
           </div>
 
           {/* Plan Intro for Trial Offer (when tagline only) */}
-          {activePlan.isTrialOffer && activePlan.tagline && !activePlan.introHeading && (
+          {baseActivePlan.isTrialOffer && baseActivePlan.tagline && !baseActivePlan.introHeading && (
             <div className="plan-intro-section">
-              <p className="plan-intro-desc-clean">{activePlan.tagline}</p>
+              <p className="plan-intro-desc-clean">{baseActivePlan.tagline}</p>
             </div>
           )}
 
           {/* Plan Intro with Heading + Value line */}
-          {activePlan.introHeading && (
+          {baseActivePlan.introHeading && (
             <div className="plan-intro-section">
-              <h3 className="plan-intro-title">{activePlan.introHeading}</h3>
-              {activePlan.introText && (
-                <p className="plan-intro-desc">{activePlan.introText}</p>
+              <h3 className="plan-intro-title">{baseActivePlan.introHeading}</h3>
+              {baseActivePlan.introText && (
+                <p className="plan-intro-desc">{baseActivePlan.introText}</p>
               )}
             </div>
           )}
@@ -873,9 +1000,9 @@ export default function PlanCard({
                       <span className="plan-title-main">Therapy Intern</span>
                       <div className="plan-title-sub-row">
                         <span className="plan-title-sub">{mode === 'Live' ? 'Live Counselling' : 'Chat Counselling'}</span>
-                        {activePlan.therapyBadges.length > 0 && (
+                        {baseActivePlan.therapyBadges.length > 0 && (
                           <div className="plan-badges-wrap">
-                            {activePlan.therapyBadges.map((badge, idx) => (
+                            {baseActivePlan.therapyBadges.map((badge, idx) => (
                               <span
                                 key={idx}
                                 className={badge.type === 'chosen' ? 'badge-chosen' : 'badge-save'}
@@ -891,7 +1018,7 @@ export default function PlanCard({
                     <>
                       <span className="plan-title-text">{planTitle}</span>
                       <div className="plan-badges-wrap">
-                        {activePlan.therapyBadges.map((badge, idx) => (
+                        {baseActivePlan.therapyBadges.map((badge, idx) => (
                           <span
                             key={idx}
                             className={badge.type === 'chosen' ? 'badge-chosen' : 'badge-save'}
@@ -904,20 +1031,20 @@ export default function PlanCard({
                   )}
                 </div>
                 <div className="plan-subtitle-text">
-                  {activePlan.subtitleType && <span>{activePlan.subtitleType}</span>}
-                  {activePlan.origStrikethrough && (
+                  {baseActivePlan.subtitleType && <span>{baseActivePlan.subtitleType}</span>}
+                  {baseActivePlan.origStrikethrough && (
                     <span className="plan-strike-orig">
-                      {currencySymbol}{activePlan.origStrikethrough}
+                      {currencySymbol}{baseActivePlan.origStrikethrough}
                     </span>
                   )}
-                  {activePlan.subPriceText && (
+                  {baseActivePlan.subPriceText && (
                     <span className="plan-sub-price">
-                      {activePlan.subPriceText}
+                      {baseActivePlan.subPriceText}
                     </span>
                   )}
-                  {activePlan.secondaryPriceRef && (
+                  {baseActivePlan.secondaryPriceRef && (
                     <span className="plan-secondary-ref">
-                      {activePlan.secondaryPriceRef}
+                      {baseActivePlan.secondaryPriceRef}
                     </span>
                   )}
                 </div>
@@ -927,19 +1054,26 @@ export default function PlanCard({
             <div className="plan-price-group">
               <div className="plan-current-price-row">
                 <span className="plan-current-price">
-                  {currencySymbol}{activePlan.currentPrice}
+                  {currencySymbol}{calculatedPrice.currentPrice}
                 </span>
                 <span className="plan-session-label">
-                  {activePlan.pricePeriod || '/session'}
+                  {baseActivePlan.pricePeriod || '/session'}
                 </span>
               </div>
-              {activePlan.priceSubtext ? (
+              {calculatedPrice.isRescueDiscounted ? (
+                <div className="plan-rescue-price-wrap">
+                  <span className="plan-strikethrough-total">
+                    {currencySymbol}{calculatedPrice.crossedOutPrice}
+                  </span>
+                  <span className="badge-extra-discount">Extra 10% OFF</span>
+                </div>
+              ) : baseActivePlan.priceSubtext ? (
                 <div className="plan-price-subtext">
-                  {activePlan.priceSubtext}
+                  {baseActivePlan.priceSubtext}
                 </div>
               ) : (
                 <div className="plan-strikethrough-total">
-                  {currencySymbol}{activePlan.originalPrice}
+                  {currencySymbol}{calculatedPrice.crossedOutPrice}
                 </div>
               )}
             </div>
@@ -948,8 +1082,8 @@ export default function PlanCard({
           {/* Feature Checklist */}
           <ul className="feature-list">
             {displayFeatures.map((feature, index) => {
-              const mobileFeature = activePlan.mobileFeatures && activePlan.mobileFeatures[index]
-                ? activePlan.mobileFeatures[index]
+              const mobileFeature = baseActivePlan.mobileFeatures && baseActivePlan.mobileFeatures[index]
+                ? baseActivePlan.mobileFeatures[index]
                 : feature;
 
               // Parse desktop feature
@@ -999,20 +1133,22 @@ export default function PlanCard({
           </ul>
 
           {/* Secondary Inclusions Line */}
-          {activePlan.secondaryInclusionsText && (
+          {baseActivePlan.secondaryInclusionsText && (
             <div className="secondary-inclusions-wrap">
               <span className="secondary-inclusions-text">
-                {activePlan.secondaryInclusionsText}
+                {baseActivePlan.secondaryInclusionsText}
               </span>
             </div>
           )}
 
           {/* Promotional Discount Banner */}
-          {activePlan.showPromoBanner && (
+          {baseActivePlan.showPromoBanner && (
             <div className="promo-banner">
-              {!activePlan.promoBadgeText && <Tag className="promo-tag-icon" />}
+              {!baseActivePlan.promoBadgeText && <Tag className="promo-tag-icon" />}
               <span className="promo-text">
-                {activePlan.promoBadgeText || 'Introductory price for your first session'}
+                {isRescueActive
+                  ? 'Special offer: Extra 10% discount applied at checkout'
+                  : (baseActivePlan.promoBadgeText || 'Introductory price for your first session')}
               </span>
             </div>
           )}
@@ -1041,32 +1177,35 @@ export default function PlanCard({
                   >
                     {opt.label}
                   </button>
-                  <span className="duration-save-label">{opt.saveText}</span>
+                  <span className={`duration-save-label ${isRescueActive ? 'save-label-highlight' : ''}`}>
+                    {opt.saveText}
+                  </span>
                 </div>
               );
             })}
           </div>
 
           {/* Small Pricing Clarification Text if provided */}
-          {activePlan.priceClarification && (
+          {baseActivePlan.priceClarification && (
             <p className="plan-price-clarification">
-              {activePlan.priceClarification}
+              {baseActivePlan.priceClarification}
             </p>
           )}
 
           {/* Action CTA Button */}
           <button
             type="button"
-            className="proceed-btn"
+            className={`proceed-btn ${isRescueActive ? 'proceed-btn-rescue' : ''}`}
             onClick={() => {
+              setIsTimerRunning(false);
               alert(
                 `Proceeding to pay for ${planTitle} (${mode}) - ${
                   durationOptions.find((d) => d.id === selectedDuration)?.label
-                } at ${currencySymbol}${activePlan.currentPrice}${activePlan.pricePeriod || '/session'}`
+                } at ${currencySymbol}${calculatedPrice.currentPrice}${baseActivePlan.pricePeriod || '/session'}`
               );
             }}
           >
-            {activePlan.ctaText || 'Proceed to Pay'}
+            {getCtaText()}
           </button>
         </div>
       </div>
