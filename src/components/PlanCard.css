@@ -715,13 +715,247 @@
   margin-left: 2px;
 }
 
-/* Price Clarification note */
+
+/* Price Clarification note (Directly Above CTA) */
 .plan-price-clarification {
-  font-size: 11px;
+  font-size: 11.5px;
   color: #64748b;
   text-align: center;
-  margin: -10px 0 14px 0;
-  line-height: 1.4;
+  margin: 0 0 10px 0;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+/* Optional Wellness Add-ons Section (Collapsed by default, Below CTA) */
+.optional-addons-section {
+  margin-top: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: ui-sans-serif, system-ui, sans-serif, -apple-system;
+  transition: all 0.2s ease;
+}
+
+.optional-addons-section:hover {
+  border-color: #cbd5e1;
+}
+
+/* 50–65px Clickable Disclosure Row */
+.optional-addons-row-btn {
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.optional-addons-row-btn:hover {
+  background: rgba(241, 245, 249, 0.7);
+}
+
+.optional-addons-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5px;
+  min-width: 0;
+}
+
+.optional-addons-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.optional-addons-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: rgb(0 45 112);
+  line-height: 1.25;
+}
+
+.optional-addons-badge {
+  font-size: 9px;
+  font-weight: 600;
+  color: #64748b;
+  background: #e2e8f0;
+  padding: 1.5px 6px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+.optional-addons-sub {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.3;
+}
+
+.optional-addons-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  color: #0284c7;
+}
+
+.optional-addons-view-text {
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.optional-chevron {
+  color: #0284c7;
+}
+
+/* Expanded Drawer */
+.optional-addons-drawer {
+  padding: 10px 12px 12px 12px;
+  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+  animation: fadeInAddons 0.2s ease-out;
+}
+
+@keyframes fadeInAddons {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 4-in-a-row Horizontal Mini-Cards / Chips for Desktop */
+.optional-addons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  align-items: stretch;
+}
+
+.optional-addon-chip {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 10px 9px 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+  min-height: 108px;
+}
+
+.optional-addon-chip:hover {
+  border-color: #7dd3fc;
+  background: #f0f9ff;
+}
+
+.optional-addon-chip.selected {
+  background: #f0f9ff;
+  border-color: #00C0FF;
+  box-shadow: 0 1px 4px rgba(0, 192, 255, 0.12);
+}
+
+.addon-chip-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.addon-chip-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgb(0 45 112);
+  line-height: 1.2;
+}
+
+.addon-chip-benefit {
+  font-size: 10px;
+  color: #64748b;
+  line-height: 1.35;
+  white-space: normal;
+  word-break: normal;
+}
+
+.addon-chip-price {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #0284c7;
+  margin-top: auto;
+  padding-top: 2px;
+  line-height: 1.25;
+}
+
+.addon-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 100%;
+  padding: 3.5px 6px;
+  border-radius: 6px;
+  background: #e0f2fe;
+  color: #0284c7;
+  border: none;
+  font-size: 10.5px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0;
+  transition: all 0.15s ease;
+}
+
+.addon-chip-btn:hover {
+  background: #bae6fd;
+}
+
+.addon-chip-btn.added {
+  background: #00C0FF;
+  color: #ffffff;
+}
+
+/* Summary Line */
+.optional-addons-summary {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed #cbd5e1;
+  font-size: 11px;
+  color: #0284c7;
+  font-weight: 600;
+  text-align: left;
+}
+
+.summary-check-icon {
+  color: #16a34a;
+  font-weight: 800;
+}
+
+.summary-text {
+  color: #0369a1;
+  font-weight: 600;
+}
+
+.summary-total-note {
+  color: #475569;
+  font-weight: 500;
 }
 
 /* 7. Action CTA Button */
@@ -885,8 +1119,92 @@
     margin-bottom: 12px;
   }
 
-  .promo-text {
+  .included-wellness-banner {
+    padding: 7px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 7px;
+  }
+
+  .included-wellness-heading {
+    font-size: 10.5px;
+  }
+
+  .included-wellness-items {
     font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .plan-price-clarification {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  /* Optional Add-ons Module (Mobile 2x2 grid) */
+  .optional-addons-section {
+    margin-top: 10px;
+    border-radius: 9px;
+  }
+
+  .optional-addons-row-btn {
+    min-height: 48px;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .optional-addons-drawer {
+    padding: 8px 9px 10px 9px;
+  }
+
+  .optional-addons-title {
+    font-size: 12px;
+  }
+
+  .optional-addons-sub {
+    font-size: 10.5px;
+  }
+
+  .optional-addons-badge {
+    font-size: 9px;
+    padding: 1.5px 5px;
+  }
+
+  .optional-addons-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .optional-addon-chip {
+    padding: 8px 8px;
+    gap: 6px;
+    border-radius: 7px;
+    min-height: 98px;
+  }
+
+  .addon-chip-name {
+    font-size: 11.5px;
+  }
+
+  .addon-chip-benefit {
+    font-size: 9.5px;
+    line-height: 1.3;
+    white-space: normal;
+  }
+
+  .addon-chip-price {
+    font-size: 10px;
+    margin-top: auto;
+  }
+
+  .addon-chip-btn {
+    padding: 2.5px 5px;
+    font-size: 9.5px;
+  }
+
+  .optional-addons-summary {
+    font-size: 10.5px;
+    margin-top: 8px;
+    padding-top: 6px;
   }
 
   .proceed-btn {

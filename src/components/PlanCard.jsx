@@ -1,6 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { Video, MessageSquare, Check, Tag, Clock, Sparkles } from 'lucide-react';
+import { Video, MessageSquare, Check, Tag, Clock, Sparkles, Plus, ChevronDown, ChevronUp } from 'lucide-react';
 import './PlanCard.css';
+
+// Additional Wellness Services Data for Expandable Section (member pricing)
+const additionalWellnessServices = [
+  {
+    id: 'yoga',
+    name: 'Yoga',
+    price: 460,
+    origPrice: 700,
+    periodLabel: ' for first session',
+    desc: 'Guided movement & wellness',
+  },
+  {
+    id: 'physio',
+    name: 'Physiotherapy',
+    price: 180,
+    origPrice: 350,
+    periodLabel: ' for first session',
+    desc: 'Movement & pain recovery',
+  },
+  {
+    id: 'nutrition',
+    name: 'Nutrition',
+    price: 210,
+    origPrice: 400,
+    periodLabel: ' for first session',
+    desc: 'Personalized diet guidance',
+  },
+  {
+    id: 'mindfulness',
+    name: 'Mindfulness',
+    price: 420,
+    origPrice: 650,
+    periodLabel: ' for first session',
+    desc: 'Stress & calm practices',
+  },
+];
 
 // Plus / Cross Decorative SVG Watermark
 const CrossWatermark = () => (
@@ -878,6 +914,26 @@ export default function PlanCard({
     return baseActivePlan.ctaText || 'Proceed to Pay';
   };
 
+  // Optional Wellness Add-on State (below CTA - collapsed by default)
+  const [isWellnessExpanded, setIsWellnessExpanded] = useState(false);
+  const [selectedWellness, setSelectedWellness] = useState([]);
+
+  const toggleWellness = (serviceId) => {
+    setSelectedWellness((prev) =>
+      prev.includes(serviceId)
+        ? prev.filter((id) => id !== serviceId)
+        : [...prev, serviceId]
+    );
+  };
+
+  const selectedWellnessServices = additionalWellnessServices.filter((s) =>
+    selectedWellness.includes(s.id)
+  );
+  const totalWellnessCost = selectedWellnessServices.reduce((sum, s) => sum + s.price, 0);
+  const totalWellnessSavings = selectedWellnessServices.reduce((sum, s) => sum + ((s.origPrice || 0) - s.price), 0);
+
+
+
   return (
     <section className="plans-section" aria-label="Therapy Plans Selection">
       {/* Title & Underline */}
@@ -1189,7 +1245,8 @@ export default function PlanCard({
             })}
           </div>
 
-          {/* Small Pricing Clarification Text if provided */}
+
+          {/* Small Pricing Clarification Text if provided (Placed ABOVE CTA) */}
           {baseActivePlan.priceClarification && (
             <p className="plan-price-clarification">
               {baseActivePlan.priceClarification}
@@ -1202,15 +1259,124 @@ export default function PlanCard({
             className={`proceed-btn ${isRescueActive ? 'proceed-btn-rescue' : ''}`}
             onClick={() => {
               setIsTimerRunning(false);
+              const addOnsText = selectedWellnessServices.length > 0
+                ? ` + Extra Add-ons: ${selectedWellnessServices.map((s) => s.name).join(', ')} (+${currencySymbol}${totalWellnessCost}/mo)`
+                : '';
               alert(
                 `Proceeding to pay for ${planTitle} (${mode}) - ${
                   durationOptions.find((d) => d.id === selectedDuration)?.label
-                } at ${currencySymbol}${calculatedPrice.currentPrice}${baseActivePlan.pricePeriod || '/session'}`
+                } at ${currencySymbol}${calculatedPrice.currentPrice}${baseActivePlan.pricePeriod || '/session'}${addOnsText}`
               );
             }}
           >
             {getCtaText()}
           </button>
+
+          {/* Optional Wellness Add-ons Module (Collapsed By Default, Below CTA) */}
+          <div className="optional-addons-section">
+            <button
+              type="button"
+              className="optional-addons-row-btn"
+              onClick={() => setIsWellnessExpanded((prev) => !prev)}
+              aria-expanded={isWellnessExpanded}
+            >
+              <div className="optional-addons-info">
+                <div className="optional-addons-title-row">
+                  <span className="optional-addons-title">Want even more support?</span>
+                  <span className="optional-addons-badge">Optional</span>
+                </div>
+                <span className="optional-addons-sub">
+                  Add optional wellness services at member pricing
+                </span>
+              </div>
+
+              <div className="optional-addons-action">
+                <span className="optional-addons-view-text">
+                  {isWellnessExpanded ? 'Hide options' : 'View options +'}
+                </span>
+                {isWellnessExpanded ? (
+                  <ChevronUp size={15} className="optional-chevron" />
+                ) : (
+                  <ChevronDown size={15} className="optional-chevron" />
+                )}
+              </div>
+            </button>
+
+            {/* Expanded Services Drawer */}
+            {isWellnessExpanded && (
+              <div className="optional-addons-drawer">
+                <div className="optional-addons-grid">
+                  {additionalWellnessServices.map((service) => {
+                    const isChecked = selectedWellness.includes(service.id);
+                    return (
+                      <div
+                        key={service.id}
+                        className={`optional-addon-chip ${isChecked ? 'selected' : ''}`}
+                        onClick={() => toggleWellness(service.id)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            toggleWellness(service.id);
+                          }
+                        }}
+                      >
+                        <div className="addon-chip-info">
+                          <span className="addon-chip-name">{service.name}</span>
+                          <span className="addon-chip-benefit">{service.desc}</span>
+                          <span className="addon-chip-price">
+                            +{currencySymbol}{service.price} first session
+                          </span>
+                        </div>
+
+                        <button
+                          type="button"
+                          className={`addon-chip-btn ${isChecked ? 'added' : ''}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleWellness(service.id);
+                          }}
+                          aria-label={`${isChecked ? 'Remove' : 'Add'} ${service.name}`}
+                        >
+                          {isChecked ? (
+                            <>
+                              <Check size={11} strokeWidth={3} />
+                              <span>Added</span>
+                            </>
+                          ) : (
+                            <>
+                              <Plus size={11} strokeWidth={2.5} />
+                              <span>Add</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Selected Add-ons Total Summary Line */}
+                {selectedWellnessServices.length > 0 && (
+                  <div className="optional-addons-summary">
+                    <span className="summary-check-icon">✓</span>
+                    <span className="summary-text">
+                      {selectedWellnessServices.length === 1
+                        ? `${selectedWellnessServices[0].name} added (+${currencySymbol}${totalWellnessCost} for first session)`
+                        : `${selectedWellnessServices.length} extras added (+${currencySymbol}${totalWellnessCost} total)`}
+                    </span>
+                    <span className="summary-total-note">
+                      · Total with plan: {currencySymbol}{(
+                        (typeof calculatedPrice.rawCurrentPrice === 'number'
+                          ? calculatedPrice.rawCurrentPrice
+                          : parseInt(String(calculatedPrice.currentPrice).replace(/,/g, ''), 10) || 0) + totalWellnessCost
+                      ).toLocaleString('en-IN')}
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>
