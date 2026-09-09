@@ -1,0 +1,398 @@
+.providers-section {
+  width: 100%;
+  position: relative;
+  background-image: url('https://web.mantracare.com/plansBanner2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f0f9ff;
+  padding: 44px 0 60px 0;
+  overflow: hidden;
+  font-family: ui-sans-serif, system-ui, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.providers-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 44px;
+}
+
+@media (max-width: 640px) {
+  .providers-container {
+    padding: 0 32px;
+  }
+}
+
+/* Header */
+.providers-heading-wrap {
+  text-align: center;
+  margin-bottom: 28px;
+  padding: 0 16px;
+}
+
+.providers-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: rgb(0 45 112);
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+  display: inline-block;
+  font-family: ui-sans-serif, system-ui, sans-serif, -apple-system;
+}
+
+@media (min-width: 640px) {
+  .providers-title {
+    font-size: 30px;
+  }
+}
+
+.providers-title-underline {
+  width: 220px;
+  height: 2.5px;
+  background-color: #00C0FF;
+  border-radius: 2px;
+  margin: 6px auto 10px auto;
+}
+
+.providers-subtitle {
+  font-size: 13.5px;
+  color: #334155;
+  font-weight: 400;
+}
+
+/* Carousel Container */
+.providers-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 8px 0 16px 0;
+}
+
+/* Scroll track */
+.providers-scroll-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 12px 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.providers-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Arrow Navigation Buttons */
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(0, 45, 112, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00C0FF;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.15s ease;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-nav-btn:hover {
+  background: #ffffff;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 6px 18px rgba(0, 45, 112, 0.2);
+  color: #0284c7;
+}
+
+.carousel-nav-btn.prev {
+  left: 0px;
+}
+
+.carousel-nav-btn.next {
+  right: 0px;
+}
+
+/* Provider Card: Exactly 4 on Desktop (1024px+) */
+.provider-card {
+  flex: 0 0 calc((100% - (3 * 16px)) / 4);
+  width: calc((100% - (3 * 16px)) / 4);
+  min-width: calc((100% - (3 * 16px)) / 4);
+  max-width: calc((100% - (3 * 16px)) / 4);
+  scroll-snap-align: start;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #eef2f6;
+  padding: 18px 18px 16px 18px;
+  box-shadow: 0 4px 20px rgba(0, 45, 112, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 345px;
+}
+
+/* Tablet: 2 cards (641px - 1024px) */
+@media (max-width: 1024px) {
+  .provider-card {
+    flex: 0 0 calc((100% - (1 * 16px)) / 2);
+    width: calc((100% - (1 * 16px)) / 2);
+    min-width: calc((100% - (1 * 16px)) / 2);
+    max-width: calc((100% - (1 * 16px)) / 2);
+  }
+}
+
+/* Mobile: Exactly 1 card (<= 640px) */
+@media (max-width: 640px) {
+  .provider-card {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    scroll-snap-align: center;
+  }
+}
+
+.provider-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 45, 112, 0.1);
+}
+
+/* Top Section: Avatar + Name + Rating */
+.provider-top-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.provider-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  object-fit: cover;
+  background-color: #f1f5f9;
+  flex-shrink: 0;
+}
+
+.provider-name-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Star Rating + Status Dot Line */
+.provider-rating-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.status-dot-inline {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #94a3b8;
+  display: inline-block;
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+
+.status-dot-inline.green {
+  background-color: #22c55e;
+}
+
+.status-dot-inline.amber {
+  background-color: #f59e0b;
+}
+
+.stars-group {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.star-icon {
+  width: 11px;
+  height: 11px;
+  color: #f59e0b;
+  fill: #f59e0b;
+}
+
+.star-icon.unfilled {
+  color: #cbd5e1;
+  fill: #cbd5e1;
+}
+
+.rating-count-text {
+  font-size: 11px;
+  color: #64748b;
+  margin-left: 2px;
+  white-space: nowrap;
+}
+
+.provider-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgb(0 45 112);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.provider-role {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* Available Date / Time Box */
+.provider-availability-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.provider-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dbeafe;
+  color: rgb(29, 78, 216);
+  padding: 4px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.provider-svg-icon {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+
+.avail-label {
+  font-weight: 700;
+  color: rgb(29, 78, 216);
+  margin-right: 3px;
+}
+
+.avail-time {
+  color: #334155;
+  font-weight: 500;
+}
+
+/* Delivery Modes (Online, In-person) */
+.provider-modes-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.mode-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgb(29, 78, 216);
+  font-weight: 600;
+}
+
+/* Bio snippet */
+.provider-bio {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #475569;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 33px;
+}
+
+/* Speciality Tags */
+.provider-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+
+.specialty-tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-size: 10.5px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.specialty-tag.more-tag {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+/* Location Footer */
+.provider-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #64748b;
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.location-pin-icon {
+  width: 12px;
+  height: 12px;
+  color: #00C0FF;
+  flex-shrink: 0;
+}
+
+/* Floating Chat Bubble Widget */
+.floating-chat-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #00C0FF;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px rgba(0, 192, 255, 0.45);
+  cursor: pointer;
+  z-index: 90;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.floating-chat-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 22px rgba(0, 192, 255, 0.6);
+}
+
+.chat-bubble-icon {
+  width: 22px;
+  height: 22px;
+  fill: #ffffff;
+}

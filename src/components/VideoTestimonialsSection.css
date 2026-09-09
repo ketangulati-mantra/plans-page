@@ -1,0 +1,290 @@
+/* Video Testimonials Deep Navy Banner Section */
+.video-testimonials-section {
+  width: 100%;
+  padding: 60px 20px 65px 20px;
+  background: linear-gradient(135deg, #002d70 0%, #003a8c 50%, #002660 100%);
+  background-image: url('https://web.mantracare.com/blueBanner.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.testimonials-content-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header Text */
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.testimonials-main-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.2px;
+}
+
+.testimonials-highlight {
+  font-size: 13.5px;
+  color: #00C0FF;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+}
+
+.testimonials-subtext {
+  font-size: 12px;
+  color: #93c5fd;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Video Stories Carousel */
+.video-stories-wrapper {
+  width: 100%;
+  max-width: 860px;
+  position: relative;
+  margin-bottom: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stories-scroll-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 6px 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  justify-content: center;
+  width: 100%;
+}
+
+.stories-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Story Video Card */
+.story-video-card {
+  flex: 0 0 148px;
+  width: 148px;
+  height: 230px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.story-video-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 192, 255, 0.35);
+  border-color: rgba(0, 192, 255, 0.6);
+}
+
+.story-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.story-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 20, 50, 0.75) 0%, rgba(0, 20, 50, 0.2) 60%, rgba(0, 20, 50, 0.4) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-play-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(0, 45, 112, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.story-video-card:hover .story-play-circle {
+  transform: scale(1.15);
+  background: rgba(0, 192, 255, 0.85);
+  border-color: #ffffff;
+}
+
+.story-play-icon {
+  width: 14px;
+  height: 14px;
+  margin-left: 2px;
+}
+
+/* Nav Arrow Buttons */
+.story-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 30, 80, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.15s ease;
+}
+
+.story-nav-btn:hover {
+  background: #00C0FF;
+  border-color: #00C0FF;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.story-nav-btn.prev {
+  left: -16px;
+}
+
+.story-nav-btn.next {
+  right: -16px;
+}
+
+/* 3 Metrics Statistics at bottom */
+.testimonials-stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  width: 100%;
+  max-width: 750px;
+}
+
+.t-stat-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.t-stat-num {
+  font-size: 26px;
+  font-weight: 800;
+  color: #00C0FF;
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
+}
+
+.t-stat-label {
+  font-size: 11.5px;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+/* Modal Popup */
+.video-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 15, 40, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  background: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.video-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 0;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.video-modal-close:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.video-modal-iframe-wrap {
+  width: 100%;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.video-modal-iframe-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .video-testimonials-section {
+    padding: 44px 14px 48px 14px;
+  }
+
+  .stories-scroll-track {
+    justify-content: flex-start;
+  }
+
+  .story-video-card {
+    flex: 0 0 130px;
+    width: 130px;
+    height: 200px;
+  }
+
+  .testimonials-stats-row {
+    gap: 28px;
+  }
+
+  .t-stat-num {
+    font-size: 20px;
+  }
+
+  .t-stat-label {
+    font-size: 10.5px;
+  }
+}

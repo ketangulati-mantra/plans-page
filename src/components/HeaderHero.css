@@ -1,0 +1,222 @@
+.hero-header-container {
+  position: relative;
+  width: 100%;
+  background-image: url('https://web.mantracare.com/blueBanner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #013773;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Inner content wrapper */
+.hero-header-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 18px 36px 28px 36px;
+}
+
+@media (min-width: 1024px) {
+  .hero-header-content {
+    padding: 22px 52px 30px 52px;
+  }
+}
+
+/* Top Navigation Bar */
+.hero-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Brand Logo */
+.brand-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+  user-select: none;
+  transition: opacity 0.15s ease;
+}
+
+.brand-logo-link:hover {
+  opacity: 0.92;
+}
+
+/* Top Right Selectors */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Dropdown Buttons */
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  transition: all 0.15s ease;
+  backdrop-filter: blur(4px);
+}
+
+.dropdown-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.dropdown-btn:focus-visible {
+  outline: 2px solid #00C0FF;
+  outline-offset: 1px;
+}
+
+.dropdown-icon {
+  width: 13.5px;
+  height: 13.5px;
+  opacity: 0.95;
+  flex-shrink: 0;
+}
+
+.dropdown-chevron {
+  width: 12.5px;
+  height: 12.5px;
+  opacity: 0.85;
+  transition: transform 0.18s ease;
+}
+
+.dropdown-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu Popover */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 170px;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  z-index: 50;
+  animation: dropdownFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  list-style: none;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  text-align: left;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f5f9;
+  color: #00C0FF;
+}
+
+.dropdown-item.active {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-weight: 600;
+}
+
+.dropdown-check {
+  width: 14px;
+  height: 14px;
+  color: #00C0FF;
+}
+
+/* Hero Content Area */
+.hero-body {
+  margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+  .hero-body {
+    margin-top: 28px;
+  }
+}
+
+.hero-title-wrap {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.hero-title {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1.15;
+  color: #ffffff;
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Plus Jakarta Sans', -apple-system;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 34px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 36px;
+  }
+}
+
+/* Accent Underline */
+.hero-title-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00C0FF;
+  border-radius: 1px;
+}
+
+.hero-subtitle {
+  margin-top: 9px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #ffffff;
+  opacity: 0.95;
+  letter-spacing: 0.05px;
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Plus Jakarta Sans', -apple-system;
+}

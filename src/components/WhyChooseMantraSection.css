@@ -1,0 +1,201 @@
+/* Why Choose Mantra Section */
+.why-choose-section {
+  width: 100%;
+  padding: 60px 20px 80px 20px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.why-choose-container {
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Heading & Subtitle */
+.why-choose-heading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.why-choose-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: rgb(0, 45, 112);
+  margin: 0 0 10px 0;
+  letter-spacing: -0.3px;
+}
+
+.why-choose-underline {
+  width: 120px;
+  height: 2.5px;
+  background-color: #00C0FF;
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+
+.why-choose-subtitle {
+  font-size: 13px;
+  color: #475569;
+  margin: 0;
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+/* Top 4 Big Feature Cards (2x2 Grid) */
+.why-choose-top-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.wcm-big-card {
+  border-radius: 20px;
+  padding: 24px 26px 26px 26px;
+  border: 1px solid rgba(0, 45, 112, 0.05);
+  box-shadow: 0 4px 18px rgba(0, 45, 112, 0.04);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wcm-big-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 26px rgba(0, 45, 112, 0.08);
+}
+
+.wcm-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.wcm-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.wcm-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.wcm-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.wcm-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: rgb(0, 45, 112);
+  margin: 0 0 8px 0;
+  letter-spacing: -0.2px;
+}
+
+.wcm-card-desc {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #475569;
+  margin: 0;
+}
+
+/* Bottom 4 Compact Cards (4 Columns) */
+.why-choose-bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.wcm-small-card {
+  border-radius: 16px;
+  padding: 20px 18px 18px 18px;
+  border: 1px solid rgba(0, 45, 112, 0.04);
+  box-shadow: 0 3px 14px rgba(0, 45, 112, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wcm-small-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 45, 112, 0.07);
+}
+
+.wcm-small-icon-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.wcm-small-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: rgb(0, 45, 112);
+  margin: 0 0 6px 0;
+}
+
+.wcm-small-desc {
+  font-size: 11px;
+  line-height: 1.45;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 860px) {
+  .why-choose-top-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .why-choose-bottom-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+
+@media (max-width: 540px) {
+  .why-choose-section {
+    padding: 40px 14px 50px 14px;
+  }
+
+  .why-choose-title {
+    font-size: 22px;
+  }
+
+  .why-choose-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

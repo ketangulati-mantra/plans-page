@@ -1,0 +1,266 @@
+/* Modal Backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modal Content Card */
+.modal-card {
+  background: #ffffff;
+  border-radius: 20px;
+  max-width: 440px;
+  width: 100%;
+  padding: 28px 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  animation: modalScale 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: ui-sans-serif, system-ui, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+@keyframes modalScale {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Top Icon */
+.modal-top-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: #eff6ff;
+  color: #0066ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.modal-percent-icon {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2.5;
+}
+
+/* Modal Title */
+.modal-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: rgb(0 45 112);
+  line-height: 1.35;
+  margin-bottom: 20px;
+}
+
+/* Discount Display */
+.modal-discount-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.modal-discount-number {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0066ff;
+  line-height: 1;
+}
+
+.modal-discount-tag {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.modal-discount-tag.tag-gray {
+  color: #64748b;
+}
+
+.modal-discount-tag.tag-green {
+  color: #16a34a;
+}
+
+/* Slider Track Area */
+.modal-slider-wrap {
+  width: 100%;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.custom-range-input {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+}
+
+.custom-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #0066ff;
+  box-shadow: 0 1px 4px rgba(0, 102, 255, 0.4);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.custom-range-input::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.custom-range-input::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #0066ff;
+  box-shadow: 0 1px 4px rgba(0, 102, 255, 0.4);
+  cursor: pointer;
+}
+
+/* Slider Labels */
+.slider-labels-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+/* Subtext */
+.modal-helper-text {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 18px;
+}
+
+/* Conditions Box */
+.modal-conditions-card {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.conditions-heading {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 10px;
+}
+
+.condition-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.condition-icon {
+  width: 14px;
+  height: 14px;
+  color: #0066ff;
+  flex-shrink: 0;
+}
+
+/* Recommendation alert inside conditions */
+.recommendation-alert {
+  background: #fffbeb;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  padding: 9px 12px;
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.alert-sparkle-icon {
+  width: 14px;
+  height: 14px;
+  color: #d97706;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.alert-text {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #78350f;
+}
+
+/* Proceed Buttons */
+.modal-proceed-btn {
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #0066ff;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.modal-proceed-btn:hover:not(:disabled) {
+  background-color: #0052cc;
+  transform: translateY(-1px);
+}
+
+.modal-proceed-btn:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.modal-dismiss-btn {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.modal-dismiss-btn:hover {
+  color: #0f172a;
+}

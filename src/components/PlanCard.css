@@ -1,0 +1,705 @@
+.plans-section {
+  width: 100%;
+  padding: 0 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: #ffffff;
+}
+
+/* Header with Title & Accent Line */
+.plans-heading-wrap {
+  text-align: center;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.plans-heading {
+  font-size: 26px;
+  font-weight: 700;
+  color: rgb(0 45 112);
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+  font-family: ui-sans-serif, system-ui, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+@media (min-width: 640px) {
+  .plans-heading {
+    font-size: 30px;
+  }
+}
+
+.plans-heading-underline {
+  width: 240px;
+  height: 2px;
+  background-color: #00C0FF;
+  border-radius: 1px;
+  margin: 6px auto 0 auto;
+}
+
+/* Outer Card Container */
+.card-outer-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Decorative background Plus/Cross watermark */
+.bg-watermark-cross {
+  position: absolute;
+  top: -24px;
+  right: -18px;
+  width: 86px;
+  height: 86px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+
+/* Main White Pricing Card */
+.plan-card {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 45, 112, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef2f6;
+  padding: 22px 24px 24px 24px;
+  font-family: ui-sans-serif, system-ui, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+@media (max-width: 480px) {
+  .plan-card {
+    padding: 16px 14px 18px 14px;
+  }
+}
+
+/* 1. Category Selector (Individual / Couple) */
+.category-tabs {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 18px;
+}
+
+.category-tab-btn {
+  flex: 1;
+  text-align: center;
+  padding: 8px 16px 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  position: relative;
+  transition: color 0.15s ease;
+  cursor: pointer;
+}
+
+.category-tab-btn.active {
+  color: rgb(0 45 112);
+  font-weight: 700;
+}
+
+.category-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #00C0FF;
+  border-radius: 2px 2px 0 0;
+}
+
+/* 2. Format Mode Toggle (Live / Chat) */
+.mode-toggle-wrap {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mode-btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  background: #ffffff;
+}
+
+.mode-btn:hover {
+  border-color: #cbd5e1;
+}
+
+.mode-btn.active {
+  background-color: #00C0FF;
+  border-color: #00C0FF;
+  color: #ffffff;
+}
+
+/* 3. Plan Header & Pricing Row */
+.plan-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.plan-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plan-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #042e60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.plan-title-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.plan-title-top-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.plan-intern-title-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.plan-title-main {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: rgb(0 45 112);
+  line-height: 1.2;
+}
+
+.plan-title-sub-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.plan-title-sub {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.2;
+}
+
+.plan-title-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(0 45 112);
+  line-height: 1.25;
+}
+
+.plan-badges-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.plan-trial-tagline {
+  font-size: 12px;
+  color: #475569;
+  margin: 2px 0 0 0;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+/* Badges next to Therapy title */
+.badge-save {
+  display: inline-flex;
+  align-items: center;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+  background-color: #dcfce7;
+  color: #16a34a;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.badge-chosen {
+  display: inline-flex;
+  align-items: center;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+  background-color: #e0f2fe;
+  color: #0284c7;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.plan-subtitle-text {
+  font-size: 12px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+.plan-strike-orig {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+.plan-sub-price {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.plan-price-group {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.plan-current-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+.plan-current-price {
+  font-size: 22px;
+  font-weight: 800;
+  color: #00C0FF;
+  line-height: 1;
+}
+
+.plan-session-label {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.plan-strikethrough-total {
+  font-size: 12px;
+  color: #94a3b8;
+  text-decoration: line-through;
+  margin-top: 2px;
+}
+
+/* 4. Feature Checklist */
+.feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #334155;
+}
+
+.feature-check-icon {
+  width: 15px;
+  height: 15px;
+  color: #00C0FF;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.feature-text-wrap {
+  flex: 1;
+}
+
+.feature-text-desktop {
+  display: inline;
+}
+
+.feature-text-mobile {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .feature-text-desktop {
+    display: none;
+  }
+  .feature-text-mobile {
+    display: inline;
+  }
+}
+
+.feature-outcome {
+  font-weight: 600;
+  color: rgb(0 45 112);
+}
+
+.feature-dot {
+  color: #94a3b8;
+  font-weight: 400;
+  margin: 0 1px;
+}
+
+.feature-detail {
+  font-weight: 400;
+  color: #475569;
+}
+
+/* Secondary Inclusions Line */
+.secondary-inclusions-wrap {
+  margin-top: -6px;
+  margin-bottom: 20px;
+  padding-left: 24px;
+}
+
+.secondary-inclusions-text {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #0284c7;
+  line-height: 1.4;
+  font-family: inherit;
+}
+
+/* 5. Promotional Discount Banner */
+.promo-banner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f0fdf4;
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin-bottom: 18px;
+}
+
+.promo-tag-icon {
+  width: 13px;
+  height: 13px;
+  color: #16a34a;
+  flex-shrink: 0;
+}
+
+.promo-text {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #15803d;
+  letter-spacing: -0.1px;
+}
+
+/* 6. Duration / Tenure Selector */
+.duration-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.duration-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Popular badge above 3 Months */
+.popular-badge {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #00C0FF;
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  z-index: 2;
+  font-family: ui-sans-serif, system-ui, sans-serif, -apple-system;
+}
+
+.popular-badge.selected {
+  background-color: #fed7aa;
+  color: #412402;
+}
+
+.duration-btn {
+  width: 100%;
+  padding: 10px 2px;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, sans-serif, -apple-system;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .duration-btn {
+    font-size: 13.5px;
+    padding: 10px 6px;
+  }
+}
+
+.duration-btn:hover {
+  border-color: #00C0FF;
+}
+
+.duration-btn.active {
+  background-color: #00C0FF;
+  border-color: #00C0FF;
+  color: #ffffff;
+}
+
+.duration-btn.has-popular-border {
+  border: 1.5px solid #00C0FF;
+}
+
+.duration-save-label {
+  margin-top: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #16A34A;
+  text-align: center;
+  min-height: 15px;
+  font-family: ui-sans-serif, system-ui, sans-serif, -apple-system;
+}
+
+@media (min-width: 640px) {
+  .duration-save-label {
+    font-size: 11px;
+  }
+}
+
+/* Intro Section (for 1 Month and other clean views) */
+.plan-intro-section {
+  margin-bottom: 12px;
+  padding-bottom: 0px;
+}
+
+.plan-intro-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: rgb(0 45 112);
+  margin: 0 0 2px 0;
+  line-height: 1.3;
+}
+
+.plan-intro-desc {
+  font-size: 12px;
+  color: #475569;
+  margin: 0;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.plan-intro-desc-clean {
+  font-size: 12.5px;
+  color: #334155;
+  margin: 0;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.plan-price-subtext {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.plan-secondary-ref {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-left: 2px;
+}
+
+/* Price Clarification note */
+.plan-price-clarification {
+  font-size: 11px;
+  color: #64748b;
+  text-align: center;
+  margin: -10px 0 14px 0;
+  line-height: 1.4;
+}
+
+/* 7. Action CTA Button */
+.proceed-btn {
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: 9999px;
+  background-color: #00C0FF;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 192, 255, 0.25);
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  font-family: ui-sans-serif, system-ui, sans-serif, -apple-system;
+}
+
+.proceed-btn:hover {
+  opacity: 0.93;
+  transform: translateY(-1px);
+}
+
+.proceed-btn:active {
+  transform: translateY(0);
+}
+
+/* Mobile Specific Spacing Optimization */
+@media (max-width: 480px) {
+  .plan-card {
+    padding: 14px 13px 16px 13px;
+  }
+
+  .category-tabs {
+    margin-bottom: 12px;
+  }
+
+  .mode-toggle-wrap {
+    margin-bottom: 14px;
+    gap: 8px;
+  }
+
+  .mode-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .plan-intro-section {
+    margin-bottom: 12px;
+    padding-bottom: 2px;
+  }
+
+  .plan-intro-title {
+    font-size: 13.5px;
+    margin-bottom: 2px;
+  }
+
+  .plan-intro-desc {
+    font-size: 11px;
+    line-height: 1.38;
+  }
+
+  .plan-header-row {
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+
+  .plan-title-text {
+    font-size: 16px;
+  }
+
+  .plan-current-price {
+    font-size: 20px;
+  }
+
+  .feature-list {
+    gap: 8.5px;
+    margin-bottom: 14px;
+  }
+
+  .feature-item {
+    font-size: 12px;
+    line-height: 1.35;
+    gap: 7.5px;
+  }
+
+  .feature-check-icon {
+    width: 14px;
+    height: 14px;
+    margin-top: 1.5px;
+  }
+
+  .secondary-inclusions-wrap {
+    margin-top: -4px;
+    margin-bottom: 14px;
+    padding-left: 21.5px;
+  }
+
+  .secondary-inclusions-text {
+    font-size: 11.5px;
+    line-height: 1.35;
+  }
+
+  .duration-grid {
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .duration-btn {
+    padding: 8px 2px;
+    min-height: 36px;
+    font-size: 11px;
+    border-radius: 7px;
+  }
+
+  .popular-badge {
+    top: -7px;
+    font-size: 9px;
+    padding: 1px 5px;
+  }
+
+  .duration-save-label {
+    margin-top: 4px;
+    font-size: 9.5px;
+    min-height: 13px;
+  }
+
+  .promo-banner {
+    padding: 5px 8px;
+    margin-bottom: 12px;
+  }
+
+  .promo-text {
+    font-size: 11px;
+  }
+
+  .proceed-btn {
+    padding: 11px 16px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+}

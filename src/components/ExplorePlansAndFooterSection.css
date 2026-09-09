@@ -1,0 +1,205 @@
+/* Explore Other Plans and Footer Section Styles */
+.explore-footer-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Explore Other Plans Container */
+.explore-plans-section {
+  width: 100%;
+  padding: 55px 20px 65px 20px;
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+/* Decorative Ambient Rings & Cross */
+.explore-bg-circle-left {
+  position: absolute;
+  top: 15%;
+  left: 2%;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 14px solid rgba(0, 192, 255, 0.08);
+  pointer-events: none;
+}
+
+.explore-bg-circle-right {
+  position: absolute;
+  bottom: 10%;
+  right: 4%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 16px solid rgba(0, 192, 255, 0.08);
+  pointer-events: none;
+}
+
+.explore-bg-cross {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  width: 55px;
+  height: 55px;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+.explore-bg-cross svg {
+  width: 100%;
+  height: 100%;
+}
+
+.explore-container {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Header */
+.explore-header {
+  text-align: center;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.explore-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: rgb(0, 45, 112);
+  margin: 0 0 10px 0;
+  letter-spacing: -0.3px;
+}
+
+.explore-underline {
+  width: 130px;
+  height: 2px;
+  background-color: #00C0FF;
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+
+.explore-subtitle {
+  font-size: 12.5px;
+  color: #475569;
+  margin: 0;
+}
+
+/* 4 Category Cards Grid */
+.explore-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  width: 100%;
+  max-width: 780px;
+}
+
+.explore-plan-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 22px 14px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 45, 112, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+}
+
+.explore-plan-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 192, 255, 0.18);
+  border-color: #00C0FF;
+}
+
+.explore-icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #e0f2fe;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.explore-plan-card:hover .explore-icon-circle {
+  background-color: #00C0FF;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.explore-plan-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgb(0, 45, 112);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Bottom Navy Copyright Bar */
+.bottom-copyright-bar {
+  width: 100%;
+  background-color: #002d70;
+  padding: 14px 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.copyright-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.copyright-text {
+  font-size: 11.5px;
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.footer-link {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-link:hover {
+  color: #00C0FF;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 680px) {
+  .explore-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .explore-plans-section {
+    padding: 38px 16px 45px 16px;
+  }
+
+  .explore-title {
+    font-size: 21px;
+  }
+
+  .copyright-text {
+    font-size: 10.5px;
+  }
+}
