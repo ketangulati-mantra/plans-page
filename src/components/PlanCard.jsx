@@ -96,7 +96,6 @@ const planData = {
       '3m': {
         is3mIndividualLive: true,
         introHeading: 'Build lasting progress with structured support',
-        introText: 'Work consistently on your goals with regular therapy, progress reviews and support between sessions.',
         therapyBadges: [
           { type: 'save', text: 'Save 20%' },
         ],
@@ -130,7 +129,6 @@ const planData = {
       '6m': {
         is6mIndividual: true,
         introHeading: 'Work toward lasting change with consistent support',
-        introText: 'Six months of therapy to work on your goals, track progress, and build healthier habits.',
         therapyBadges: [{ type: 'save', text: 'Save 24%' }],
         subtitleType: '24 private sessions',
         origStrikethrough: null,
@@ -899,26 +897,32 @@ export default function PlanCard({
             role="status"
             aria-live="polite"
           >
-            <div className="urgency-icon-wrap">
-              {isRescueActive ? (
-                <Sparkles className="urgency-icon rescue-pulse" size={14} />
-              ) : (
-                <Clock className="urgency-icon" size={14} />
-              )}
+            <div className="urgency-left-content">
+              <div className="urgency-icon-wrap">
+                <Clock className="urgency-icon" size={16} strokeWidth={2.4} />
+              </div>
+              <div className="urgency-text-wrap">
+                {isRescueActive ? (
+                  <span className="urgency-message">
+                    Still deciding? <strong className="urgency-highlight">Here's 10% more off</strong>
+                  </span>
+                ) : (
+                  <span className="urgency-message">
+                    Your <strong className="urgency-intro-strong">introductory offer</strong> is reserved for
+                  </span>
+                )}
+              </div>
             </div>
-            <div className="urgency-text-wrap">
-              {isRescueActive ? (
-                <span className="urgency-message">
-                  Still deciding? <strong className="urgency-highlight">Here’s 10% extra off</strong> · Expires in
-                </span>
-              ) : (
-                <span className="urgency-message">
-                  Your introductory offer is reserved for
-                </span>
+
+            <div className="urgency-right-pills">
+              {isRescueActive && (
+                <div className="urgency-rescue-badge">
+                  <span>EXTRA 10% OFF</span>
+                </div>
               )}
-            </div>
-            <div className={`urgency-timer-badge ${isRescueActive ? 'badge-timer-rescue' : ''}`}>
-              <span className="timer-digits">{formatTime(timeLeft)}</span>
+              <div className={`urgency-timer-badge ${isRescueActive ? 'badge-timer-rescue' : ''}`}>
+                <span className="timer-digits">{formatTime(timeLeft)}</span>
+              </div>
             </div>
           </div>
         )}

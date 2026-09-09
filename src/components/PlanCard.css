@@ -52,11 +52,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  padding: 8px 14px;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 14px;
   border-radius: 12px;
-  margin-bottom: 12px;
-  transition: all 0.3s ease;
+  margin-bottom: 14px;
+  transition: all 0.25s ease;
   font-family: ui-sans-serif, system-ui, sans-serif, -apple-system;
   position: relative;
   z-index: 2;
@@ -64,16 +65,25 @@
 }
 
 .urgency-intro {
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
-  color: #0369a1;
+  background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+  border: 1px solid #7dd3fc;
+  color: rgb(0, 45, 112);
+  box-shadow: 0 2px 8px rgba(0, 192, 255, 0.1);
 }
 
 .urgency-rescue {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #991b1b;
-  box-shadow: 0 2px 10px rgba(239, 68, 68, 0.08);
+  background: linear-gradient(135deg, #fef2f2 0%, #fff7ed 100%);
+  border: 1px solid #fca5a5;
+  color: #7f1d1d;
+  box-shadow: 0 2px 10px rgba(239, 68, 68, 0.09);
+}
+
+.urgency-left-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
 }
 
 .urgency-icon-wrap {
@@ -84,67 +94,83 @@
 }
 
 .urgency-intro .urgency-icon {
-  color: #00C0FF;
+  color: #0284c7;
 }
 
 .urgency-rescue .urgency-icon {
-  color: #ef4444;
-}
-
-.rescue-pulse {
-  animation: pulse-soft 1.6s infinite ease-in-out;
-}
-
-@keyframes pulse-soft {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.9;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 1;
-  }
+  color: #ea580c;
 }
 
 .urgency-text-wrap {
-  flex: 1;
   min-width: 0;
   text-align: left;
 }
 
 .urgency-message {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   line-height: 1.35;
-  letter-spacing: -0.1px;
+  letter-spacing: -0.15px;
+  color: rgb(0, 45, 112);
+}
+
+.urgency-intro-strong {
+  font-weight: 700;
+  color: rgb(0, 45, 112);
+}
+
+.urgency-rescue .urgency-message {
+  color: #7f1d1d;
 }
 
 .urgency-highlight {
-  font-weight: 700;
-  color: #b91c1c;
+  font-weight: 800;
+  color: #ea580c;
+}
+
+.urgency-right-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.urgency-rescue-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  background: #ea580c;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  box-shadow: 0 1px 3px rgba(234, 88, 12, 0.25);
+  white-space: nowrap;
 }
 
 .urgency-timer-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 3px 8px;
-  border-radius: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
   background: #ffffff;
-  border: 1px solid #bae6fd;
-  color: #0284c7;
-  font-weight: 700;
-  font-size: 12.5px;
+  border: 1.5px solid #38bdf8;
+  color: rgb(0, 45, 112);
+  font-weight: 800;
+  font-size: 15px;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.5px;
-  flex-shrink: 0;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 3px rgba(0, 45, 112, 0.06);
+  white-space: nowrap;
 }
 
 .badge-timer-rescue {
-  background: #ef4444;
-  border-color: #dc2626;
-  color: #ffffff;
+  background: #ffffff;
+  border-color: #ea580c;
+  color: #ea580c;
 }
 
 /* Decorative background Plus/Cross watermark */
@@ -729,21 +755,31 @@
 /* Mobile Specific Spacing Optimization */
 @media (max-width: 480px) {
   .urgency-bar {
-    padding: 7px 10px;
-    margin-bottom: 9px;
+    min-height: 40px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
     border-radius: 10px;
     gap: 6px;
   }
 
+  .urgency-left-content {
+    gap: 6px;
+  }
+
   .urgency-message {
-    font-size: 11px;
+    font-size: 11.5px;
     line-height: 1.25;
   }
 
+  .urgency-rescue-badge {
+    padding: 3px 6px;
+    font-size: 9.5px;
+  }
+
   .urgency-timer-badge {
-    padding: 2.5px 6px;
-    font-size: 11.5px;
-    border-radius: 5px;
+    padding: 3px 7px;
+    font-size: 13.5px;
+    border-radius: 6px;
   }
 
   .plan-card {
